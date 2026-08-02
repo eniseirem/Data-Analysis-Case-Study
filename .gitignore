@@ -1,0 +1,14 @@
+context/
+.DS_Store
+
+# raw data — download locally, keep it out of git
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/README.md
+
+# python / notebooks
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
