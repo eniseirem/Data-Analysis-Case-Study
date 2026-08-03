@@ -1,4 +1,4 @@
-# QWIDA — Quality Science Data Analysis Case Study
+# QWIDA - Data Analysis Case Study
 
 Group number: 
 Members: 
