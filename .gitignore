@@ -12,3 +12,6 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/
 venv/
+
+# scratch/decision-support, not the graded deliverable
+# notebooks/case_study/exploration.py
