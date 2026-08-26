@@ -2,7 +2,7 @@ import plotly.express as px
 import streamlit as st
 
 from data import require_data, select_filter
-from theme import CATEGORICAL, PLOTLY_LAYOUT, apply_page_style, show_header
+from theme import BRAND_BLUE, PLOTLY_LAYOUT, apply_page_style, show_header
 
 st.set_page_config(page_title="Map - T11 Recall", page_icon="assets/logo/logo.svg", layout="wide")
 apply_page_style()
@@ -27,6 +27,8 @@ by_town = (
     .reset_index(name="affected_vehicles")
 )
 
+center = dict(lat=by_town["latitude"].mean(), lon=by_town["longitude"].mean())
+
 fig = px.scatter_map(
     by_town,
     lat="latitude",
@@ -34,7 +36,8 @@ fig = px.scatter_map(
     size="affected_vehicles",
     hover_name="registration_municipality",
     hover_data={"affected_vehicles": True, "latitude": False, "longitude": False},
-    color_discrete_sequence=[CATEGORICAL[0]],
+    color_discrete_sequence=[BRAND_BLUE],
+    center=center,
     zoom=5,
     height=600,
     map_style="open-street-map",

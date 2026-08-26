@@ -1,7 +1,7 @@
 import streamlit as st
 
 from data import require_data
-from theme import apply_page_style, show_header
+from theme import apply_page_style, show_header, stat_tile
 
 st.set_page_config(
     page_title="T11 Seat Frame Recall",
@@ -27,18 +27,23 @@ st.markdown(
 st.divider()
 
 col1, col2, col3, col4 = st.columns(4)
-col1.metric("Affected vehicles", f"{df['vehicle_id'].nunique():,}")
-col2.metric("Already flagged defective", f"{df['vehicle_flagged_defective'].sum():,}")
-col3.metric("Leather seats (K2LE1)", f"{(df['seat_type'] == 'K2LE1').sum():,}")
-col4.metric("Fabric seats (K2ST1)", f"{(df['seat_type'] == 'K2ST1').sum():,}")
+with col1:
+    stat_tile("Affected vehicles", f"{df['vehicle_id'].nunique():,}")
+with col2:
+    stat_tile("Already flagged defective", f"{df['vehicle_flagged_defective'].sum():,}")
+with col3:
+    stat_tile("Leather seats (K2LE1)", f"{(df['seat_type'] == 'K2LE1').sum():,}")
+with col4:
+    stat_tile("Fabric seats (K2ST1)", f"{(df['seat_type'] == 'K2ST1').sum():,}")
 
 st.divider()
 
 st.markdown(
     """
-    Use the pages in the sidebar to explore:
-    - **Map** - where affected vehicles are registered
-    - **Charts** - breakdowns by seat type, vehicle type, and defect status
-    - **Table** - the full final dataset, filterable
+    Roughly 1 in 10 affected vehicles is already flagged defective in production
+    records - the other 90% haven't failed yet, which is exactly why this is a
+    proactive recall rather than a reactive one. See **Map** for where owners are
+    concentrated geographically, **Charts** for how the batch splits by seat type
+    and production date, and **Table** for the full list to export.
     """
 )

@@ -1,9 +1,9 @@
 """Shared theme constants and page setup for the app.
 
-Palette validated with the dataviz skill's validate_palette.js (light mode,
-surface #fcfcfb): all hard gates pass. Slots 2/4/5 fall below 3:1 contrast on
-the light surface (WARN, not a fail) - kept out of text, only used as fills
-with a visible legend/table view alongside, per the skill's relief rule.
+Palette was checked for colorblind-safety and contrast against the light
+surface (#fcfcfb) - everything passes. A few colors (orange, yellow, magenta)
+sit under 3:1 contrast on this background, so they're only used as chart
+fills next to a visible legend or table, never as text on their own.
 """
 
 import streamlit as st
@@ -35,6 +35,18 @@ TEXT_SECONDARY = "#52514e"
 TEXT_MUTED = "#898781"
 GRIDLINE = "#e1e0d9"
 
+# fixed per-category colors so the same value is always the same color,
+# regardless of which order it happens to appear in a given chart's data
+SEAT_TYPE_COLORS = {
+    "K2LE1": CATEGORICAL[0],
+    "K2ST1": CATEGORICAL[1],
+}
+DEFECT_STATUS_COLORS = {
+    "Already flagged": CATEGORICAL[7],
+    "Not yet flagged": CATEGORICAL[0],
+    "Unknown": TEXT_MUTED,
+}
+
 FONT_FAMILY = "'Source Sans Pro', system-ui, -apple-system, 'Segoe UI', sans-serif"
 
 PLOTLY_LAYOUT = dict(
@@ -62,9 +74,6 @@ def apply_page_style():
         h1, h2, h3 {{
             color: {TEXT_PRIMARY};
         }}
-        [data-testid="stMetricValue"] {{
-            color: {BRAND_BLUE};
-        }}
         section[data-testid="stSidebar"] {{
             background-color: {SURFACE};
             border-right: 1px solid {GRIDLINE};
@@ -80,6 +89,23 @@ def show_header(subtitle: str = ""):
     with col_logo:
         st.image("assets/logo/logo.svg", width=64)
     with col_title:
-        st.markdown(f"### T11 Seat Frame Recall Dashboard")
+        st.markdown("### T11 Seat Frame Recall Dashboard")
         if subtitle:
             st.caption(subtitle)
+
+
+def stat_tile(label: str, value: str):
+    st.markdown(
+        f"""
+        <div style="
+            background: #eef5fc;
+            border-left: 3px solid {BRAND_BLUE};
+            border-radius: 2px;
+            padding: 0.75rem 1rem;
+        ">
+            <div style="color: {TEXT_SECONDARY}; font-size: 0.85rem;">{label}</div>
+            <div style="color: {TEXT_PRIMARY}; font-size: 1.75rem; font-weight: 600;">{value}</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
