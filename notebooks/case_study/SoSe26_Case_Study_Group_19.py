@@ -1127,7 +1127,7 @@ print(
 )
 
 # %% [markdown]
-# # Final Dataset
+# # 8. Final Dataset
 #
 # The final dataset consists of one-to-one trace from each critical T11 part to an affected component and vehicle. Each row contains T11 identifier, affectd component, vehicle identifier and type, production and recorded-defect related information, registration information and geographical coodinates. Intermediate merge keys and redundant fields are excluded to have the presentation ready structure for the web app. Therefore, the file SoSe26_Case_Study_finalData_Group_19.csv is the sole data source used in the accompanying application.
 #
