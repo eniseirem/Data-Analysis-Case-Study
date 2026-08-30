@@ -26,6 +26,6 @@ st.dataframe(filtered, use_container_width=True, hide_index=True)
 st.download_button(
     "Download filtered data as CSV",
     filtered.to_csv(index=False).encode("utf-8"),
-    file_name="t11_recall_affected_vehicles_filtered.csv",
+    file_name="SoSe26_Case_Study_finalData_Group_19_filtered.csv",
     mime="text/csv",
 )

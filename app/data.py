@@ -5,7 +5,7 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
-DATA_PATH = Path(__file__).parent / ".." / "data" / "processed" / "case_study" / "t11_recall_affected_vehicles.csv"
+DATA_PATH = Path(__file__).parent / ".." / "data" / "processed" / "case_study" / "SoSe26_Case_Study_finalData_Group_19.csv"
 
 
 @st.cache_data
