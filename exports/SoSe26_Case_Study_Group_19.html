@@ -7837,6 +7837,38 @@ a.anchor-link {
 </div>
 </div>
 </div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=82cbfcc5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Table-of-Contents">Table of Contents<a class="anchor-link" href="#Table-of-Contents">¶</a></h2><p><strong>Importing the data</strong></p>
+<ul>
+<li><a href="#1.-Data-Import">1. Data Import</a></li>
+</ul>
+<p><strong>Data preparation</strong></p>
+<ul>
+<li><a href="#2.-EDA">2. EDA</a></li>
+<li><a href="#3.-Trace-Critical-T11-Parts-to-Components">3. Trace Critical T11 Parts to Components</a></li>
+<li><a href="#4:-Identify-Affected-Vehicles-based-on-affected-componenets">4: Identify Affected Vehicles based on affected componenets</a></li>
+<li><a href="#5.-Vehicle-Production-with-Production-Information">5. Vehicle Production with Production Information</a></li>
+<li><a href="#6.--Registration-Information">6. Registration Information</a></li>
+<li><a href="#7.-Geographic-Information">7. Geographic Information</a></li>
+</ul>
+<p><strong>Creation of the final dataset</strong></p>
+<ul>
+<li><a href="#8.-Final-Dataset">8. Final Dataset</a></li>
+</ul>
+<p><strong>Evaluation and Result</strong></p>
+<ul>
+<li><a href="#9.-Overview-of-Results-and-Business-Findings">9. Overview of Results and Business Findings</a></li>
+<li><a href="#Interactive-Web-Application">Interactive Web Application</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f6141171">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7987,7 +8019,7 @@ canonical and exclude the root-level one from import.</li>
 <li>columns separated by tab, while rows are form-feed separated: \x0c, rather than a general newline character, therefore it can be read with:
 <em>pd.read_csv(..., sep="\t", lineterminator="\x0c")</em></li>
 </ul>
-<h1 id="TODO:-move-this-to-data-cleaning-or-somting">TODO: move this to data cleaning or somting<a class="anchor-link" href="#TODO:-move-this-to-data-cleaning-or-somting">¶</a></h1><ol start="2">
+<ol start="2">
 <li>Fahrzeuge_OEM1_Typ11.csv  contains two redundant counter columns with names "" and "X1". To ensure removing this would indeed be harmless, we verify that it is indeed just a counter (df["Unnamed: 0"].head()
 df["Unnamed: 0"].nunique()
 len(df)) and  remove it by running df = df.drop(columns=["Unnamed: 0"]) in cell below.</li>
@@ -8990,14 +9022,14 @@ Fehlerhaft
 <pre>RangeIndex(start=1, stop=11, step=1)
 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 Rows: 2385260
-Unique X1: 2385260
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Duplicate X1: 0
+<pre>Unique X1: 2385260
+Duplicate X1: 0
 </pre>
 </div>
 </div>

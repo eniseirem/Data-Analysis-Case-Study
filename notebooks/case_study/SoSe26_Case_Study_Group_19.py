@@ -46,6 +46,28 @@
 # - Create one cleaned final dataset that contains information of all the affected parties and serves as the sole input to the web application.
 
 # %% [markdown]
+# ## Table of Contents
+#
+# **Importing the data**
+# - [1. Data Import](#1.-Data-Import)
+#
+# **Data preparation**
+# - [2. EDA](#2.-EDA)
+# - [3. Trace Critical T11 Parts to Components](#3.-Trace-Critical-T11-Parts-to-Components)
+# - [4: Identify Affected Vehicles based on affected componenets](#4:-Identify-Affected-Vehicles-based-on-affected-componenets)
+# - [5. Vehicle Production with Production Information](#5.-Vehicle-Production-with-Production-Information)
+# - [6. Registration Information](#6.--Registration-Information)
+# - [7. Geographic Information](#7.-Geographic-Information)
+#
+# **Creation of the final dataset**
+# - [8. Final Dataset](#8.-Final-Dataset)
+#
+# **Evaluation and Result**
+# - [9. Overview of Results and Business Findings](#9.-Overview-of-Results-and-Business-Findings)
+# - [Interactive Web Application](#Interactive-Web-Application)
+#
+
+# %% [markdown]
 # ## 1. Data Import
 #
 # Raw data was downloaded from tubCloud and extracted into `data/raw/` at the
@@ -129,7 +151,6 @@ file_catalog.groupby(["category", "extension"]).size()
 # -  columns separated by tab, while rows are form-feed separated: \x0c, rather than a general newline character, therefore it can be read with:
 # *pd.read_csv(..., sep="\t", lineterminator="\x0c")*
 #
-# #TODO: move this to data cleaning or somting
 # 2. Fahrzeuge_OEM1_Typ11.csv  contains two redundant counter columns with names "" and "X1". To ensure removing this would indeed be harmless, we verify that it is indeed just a counter (df["Unnamed: 0"].head()
 # df["Unnamed: 0"].nunique()
 # len(df)) and  remove it by running df = df.drop(columns=["Unnamed: 0"]) in cell below.
