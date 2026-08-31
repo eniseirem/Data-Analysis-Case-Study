@@ -25,32 +25,24 @@ def reset_out():
     OUT.mkdir(parents=True)
 
 
-def copy_with_logo_path_fix(src: Path, dest: Path):
-    text = src.read_text()
-    dest.write_text(text.replace('"assets/logo/logo.svg"', '"www/logo.svg"'))
-
-
 def build_app():
     app_src = ROOT / "app"
-    copy_with_logo_path_fix(
-        app_src / f"SoSe26_Case_Study_App_Group_{GROUP}.py", OUT / f"SoSe26_Case_Study_App_Group_{GROUP}.py"
-    )
+    app_filename = f"SoSe26_Case_Study_App_Group_{GROUP}.py"
+    text = (app_src / app_filename).read_text()
 
-    (OUT / "pages").mkdir()
-    for page in (app_src / "pages").glob("*.py"):
-        copy_with_logo_path_fix(page, OUT / "pages" / page.name)
+    replacements = [
+        ('"assets/logo/logo.svg"', '"www/logo.svg"'),
+        (
+            f'DATA_PATH = Path(__file__).parent / ".." / "data" / "processed" '
+            f'/ "case_study" / "SoSe26_Case_Study_finalData_Group_{GROUP}.csv"',
+            f'DATA_PATH = Path(__file__).parent / "SoSe26_Case_Study_finalData_Group_{GROUP}.csv"',
+        ),
+    ]
+    for old, new in replacements:
+        assert old in text, f"expected string not found in {app_filename}: {old[:60]}"
+        text = text.replace(old, new)
 
-    copy_with_logo_path_fix(app_src / "theme.py", OUT / "theme.py")
-
-    data_py = (app_src / "data.py").read_text()
-    old = (
-        'DATA_PATH = Path(__file__).parent / ".." / "data" / "processed" '
-        '/ "case_study" / "SoSe26_Case_Study_finalData_Group_19.csv"'
-    )
-    new = f'DATA_PATH = Path(__file__).parent / "SoSe26_Case_Study_finalData_Group_{GROUP}.csv"'
-    assert old in data_py, "data.py DATA_PATH line not found as expected"
-    (OUT / "data.py").write_text(data_py.replace(old, new))
-
+    (OUT / app_filename).write_text(text)
     shutil.copytree(app_src / ".streamlit", OUT / ".streamlit")
 
 
