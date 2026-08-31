@@ -1,7 +1,7 @@
 # QWIDA - Data Analysis Case Study
 
-Group number: 
-Members: 
+Group number: 19
+Members: Enise Irem Colak, Lela Tvaliashvili
 
 ## What this repo contains
 
