@@ -1,7 +1,7 @@
 """Assemble the flat SoSe26_Case_Study_Group_19 submission package from the repo.
 
 Run from the repo root:
-    /Users/eniseiremcolak/opt/anaconda3/envs/qwida/bin/python scripts/build_submission.py
+    /opt/anaconda3/envs/QW/bin/python scripts/build_submission.py
 
 Output goes to submission/SoSe26_Case_Study_Group_19/ (gitignored) and is not
 part of the git repo layout - the submission ZIP structure the course requires
@@ -16,7 +16,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 GROUP = "19"
 OUT = ROOT / "submission" / f"SoSe26_Case_Study_Group_{GROUP}"
-NBCONVERT = "/Users/eniseiremcolak/opt/anaconda3/envs/qwida/bin/jupyter"
+NBCONVERT = "/opt/anaconda3/envs/QW/bin/jupyter"
 
 
 def reset_out():
